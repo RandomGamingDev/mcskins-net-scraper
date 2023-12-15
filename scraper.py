@@ -16,6 +16,7 @@ def safeMkdir(directory):
 skinsDir = "skins"
 safeMkdir(skinsDir)
 
+print("Getting the navbar!")
 # The URL to the website
 url = "https://www.minecraftskins.net"
 # Get the HTML from the website
@@ -25,7 +26,9 @@ result = removeWhitespace(result)
 
 # Get the navbar
 navbar = result[result.find("<navclass=\"main\">"):result.find("</nav>")]
+print("Got the navbar!")
 
+print("Getting the sections!")
 # Get the navbar's sections
 sections = navbar.split("<li>")
 # Remove the unnecessary sections at the start and end
@@ -34,9 +37,11 @@ sections.pop()
 # Remove the HTML surrounding the hrefs
 sections = [section[8:] for section in sections]
 sections = [section[:section.find('"')] for section in sections]
+print("Got the sections!")
 
 # Loop over each section
 for section in sections:
+    print(f"Getting section { section[9:] }")
     # Create the section directories if they don't exist
     sectionDir = skinsDir + section[9:]
     safeMkdir(sectionDir)
@@ -57,6 +62,7 @@ for section in sections:
     
     # Loop over each page
     for i in range(1, numPages + 1):
+        print(f"\tGetting page { i }")
         # Get the URL to the page
         pageURL = f"{ sectionURL }/{ i }"
         # Get the HTML from the section
@@ -75,6 +81,7 @@ for section in sections:
         
         # Loop over each skin
         for skin in skins:
+            print(f"\t\tGetting skin { skin }")
             # Create the section directories if they don't exist
             skinDir = sectionDir + skin
             safeMkdir(skinDir)
@@ -102,3 +109,6 @@ for section in sections:
             # Save the skin img
             with open(skinDir + "/skin.png", "wb") as f:
                 shutil.copyfileobj(skinImgResult, f)
+            print(f"\t\tGot skin { skin }")
+        print(f"\tGot page { i }")
+    print(f"Got section { section[9:] }")
