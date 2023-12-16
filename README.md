@@ -1,7 +1,7 @@
 # mcskins-net-scraper
 A basic scraper you can use to get the name, description, and actual skin off of [minecraftskins.net](https://www.minecraftskins.net) easily, whether it be just for storing the data or for something like use in a ML project
 
-It'll take a while for it to execute and it doesn't have any progress bars, but it is working.
+It'll take a while for it to execute, but it is working.
 
 Simply run the program `scraper.py` with all the dependencies from [requirements.txt](https://github.com/RandomGamingDev/mcskins-net-scraper/blob/main/requirements.txt) installed and it will create a `skins` directory that will contain each category with each category containing folders with each folder representing a skin and each folder containing a `meta.txt` which contains the title and description and a `skin.png` containing the actual skin. This can then be easily searched through or used in whatever you want, whether it be something like a website, to train a ML model, or anything else. Please note, that I do not legally own this data which is why it isn't posted alongside the scraper, if you want the data you can scrape it yourself (it's just 104 lines of code after all just look through it there isn't really any risk to running it).
 
